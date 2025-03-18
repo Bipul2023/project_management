@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { Menu, X, Home, Settings, User } from "lucide-react";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -21,14 +21,30 @@ import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import ChatIcon from "@mui/icons-material/Chat";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useLocation } from "react-router";
+import LoadingBar from "react-top-loading-bar";
 
 export default function Sidebar({ children }) {
   const [isOpen, setIsOpen] = useState(true);
 
   const [isListOpen, setIsListOpen] = useState(false);
+  const [isReportsOpen, setIsReportsOpen] = useState(false)
+
+  const location = useLocation();
+  const isActive = (path)=> location.pathname == path ? " sideBarItemActive": " ";
+  
+  const loadingBar = useRef(null);
+  useEffect(() => {
+    loadingBar.current.continuousStart(); // Start loading bar
+    const timer = setTimeout(() => {
+      loadingBar.current.complete(); // Complete loading after delay
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
     <div className=" w-full ">
+      <LoadingBar color="#282C6C" height={3} ref={loadingBar} />
       {/* Header */}
       <div className="flex justify-between items-center px-8 py-2 h-[5rem] bg-white w-full border-b border-gray-400 shadow-[10px_10px_50px_5px] shadow-gray-300">
         <div className="flex gap-x-8">
@@ -51,7 +67,7 @@ export default function Sidebar({ children }) {
         <div className="">User</div>
       </div>
       {/* Sidebar */}
-      <div className="flex flex-auto h-screen w-full relative ">
+      <div className="flex flex-auto h-[calc(100vh_-_5rem)] w-full relative ">
         <div
           className={`absolute left-0 lg:static z-10 h-full   transition-transform transform  ${isOpen ? "translate-x-0 w-full lg:w-[16rem]" : "-translate-x-[20rem]"} w-0`}
         >
@@ -61,31 +77,31 @@ export default function Sidebar({ children }) {
           >
             {/* <h2 className="text-2xl font-bold mb-5">Sidebar</h2> */}
             <ul className="space-y-4">
-              <SideBarListItem to={"/"}>
+              <SideBarListItem to={"/"} className={isActive("/")}>
                 <DashboardIcon /> Dashboard
               </SideBarListItem>
 
-              <SideBarListItem to={"/projects"}>
+              <SideBarListItem to={"/projects"} className={isActive("/projects")}>
                 <FolderIcon /> Project
               </SideBarListItem>
 
-              <SideBarListItem to={"/tasks"}>
+              <SideBarListItem to={"/tasks"} className={isActive("/tasks")}>
                 <TaskIcon /> Tasks
               </SideBarListItem>
 
-              <SideBarListItem>
+              <SideBarListItem className={isActive("/clients")}>
                 <AssignmentIndIcon /> Clients
               </SideBarListItem>
 
-              <SideBarListItem>
+              <SideBarListItem className={isActive("/company")}>
                 <BusinessIcon /> Company
               </SideBarListItem>
 
-              <SideBarListItem>
+              <SideBarListItem className={isActive("/leads")}>
                 <PeopleAltIcon /> Leads
               </SideBarListItem>
 
-              <SideBarListItem>
+              <SideBarListItem className={isActive("/deals")}>
                 <DescriptionIcon /> Deals
               </SideBarListItem>
 
@@ -101,7 +117,7 @@ export default function Sidebar({ children }) {
                   </SideBarListItem>
                 </div>
                 <div
-                  className={`ps-2 ${isListOpen ? "h-full  visible" : "h-0 invisible"} `}
+                  className={`space-y-2 ps-2  ${isListOpen ? " h-full visible mt-2" : "h-0 invisible"} `}
                 >
                   <div className="">
                     <SideBarListItem>
@@ -130,9 +146,44 @@ export default function Sidebar({ children }) {
                 <GroupsIcon /> Teams
               </SideBarListItem>
 
-              <SideBarListItem>
-                <AssessmentIcon /> Reports
-              </SideBarListItem>
+              
+
+              <div>
+                <div onClick={() => setIsReportsOpen(!isReportsOpen)}>
+                  <SideBarListItem>
+                    <div className="flex justify-between items-center gap-2 w-full">
+                      <div className="flex gap-x-4">
+                      <AssessmentIcon /> Reports
+                      </div>
+                      <div><ExpandMoreIcon /></div>
+                    </div>
+                  </SideBarListItem>
+                </div>
+                <div
+                  className={`space-y-2 ps-2  ${isReportsOpen ? " h-full visible mt-2" : "h-0 invisible"} `}
+                >
+                  <div className="">
+                    <SideBarListItem>
+                      Project Report
+                    </SideBarListItem>
+                  </div>
+                  <div className="">
+                    <SideBarListItem>
+                      Tasks Report
+                    </SideBarListItem>
+                  </div>
+                  <div className="">
+                    <SideBarListItem>
+                      Leads Report
+                    </SideBarListItem>
+                  </div>
+                  <div className="">
+                    <SideBarListItem>
+                      Expense Report
+                    </SideBarListItem>
+                  </div>
+                </div>
+              </div>
 
               <SideBarListItem>
                 <SupportAgentIcon /> Tickets
