@@ -1,41 +1,56 @@
 :root{
     --primary1 : #282C6C;
     --primary2 : #171b5b;
+    --error1: #D32F2F;
+    --error2: #d61d1d;
 
 }
-.css-sj612a{
-    border:  none !important;
-    box-shadow: 5px 5px 10px #5c5c5c;
+
+
+
+
+input{
+    border: 2px solid rgb(145, 144, 144);
+    border-radius: 5px;
+    line-height: 2.5rem;
+    padding: 0rem 1rem;
+   
+}
+input:focus{
+    outline: none;
+    border: 2px solid var(--primary1);
 }
 
-.css-1yo1fu-MuiStack-root{
-    padding-top: 0 !important;
-    flex-grow: 1;
+.inputData{
+    display: flex;
+    flex-direction: column;
+    row-gap: .3rem;
+}
+
+select{
+    border: 2px solid rgb(145, 144, 144);
+    border-radius: 5px;
+    line-height: 2.5rem;
+    height: 2.6rem;
+    padding: 0rem 1rem;
+}
+select>option{
+    padding: 0 1rem;
+}
+select:focus{
+    border: 2px solid var(--primary1);
+}
+
+textarea{
+    border: 2px solid rgb(145, 144, 144);
+    border-radius: 5px;
+    padding: .7rem 1rem;
+    resize: none;
+}
+textarea:focus{
+    outline: none;
+    border: 2px solid var(--primary1);
     
-}
-
-.css-1yo1fu-MuiStack-root>.MuiTextField-root, .css-1yo1fu-MuiStack-root>.MuiPickersTextField-root{
-    min-width: 0 !important;
-    width: 100%;
-}
-
-/* Height of input */
-.css-kbp9eo-MuiFormLabel-root-MuiInputLabel-root{
-    line-height: 1rem !important;
-}
-.css-1j615le-MuiInputBase-input-MuiOutlinedInput-input{
-    height: 1rem !important;
-}
-
-.css-cc5vd3-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-    height: 1rem !important;
-}
-.css-cc5vd3-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select{
-    min-height: 1rem !important;
-}
-
-.css-1nm7di2-MuiInputBase-input-MuiOutlinedInput-input{
-    height: 1rem !important;
 }
 
 /* Side bar items animations */
@@ -86,4 +101,7 @@
     scrollbar-width: none; /* Firefox */
 }
 
+/* Button Classess Start */
 
+
+/* Button Classess End */
