@@ -3,23 +3,17 @@ import SideBar from "../components/SideBar";
 import {
   Box,
   Breadcrumbs,
-  Button,
-  Dialog,
   Grid2,
   IconButton,
-  Link,
   MenuItem,
   Modal,
   Paper,
-  Tab,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Tabs,
-  TextField,
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -30,6 +24,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import CloseBtn from "../components/Buttons/CloseBtn";
 import DeleteBtn from "../components/Buttons/DeleteBtn";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { Link } from "react-router";
 
 const style = {
   position: "relative",
@@ -86,9 +81,9 @@ const Project = () => {
   return (
     <div>
       <SideBar>
-        <div className="m-6">
+        <div className="mx-6">
           <Breadcrumbs aria-label="breadcrumb">
-            <Link underline="hover" color="inherit" href="/">
+            <Link underline="hover" color="inherit" to={'/'}>
               Dashboard
             </Link>
 
@@ -96,7 +91,7 @@ const Project = () => {
           </Breadcrumbs>
         </div>
 
-        <div className="flex flex-row flex-wrap place-content-between px-6 gap-x-2 gap-y-4">
+        <div className="flex flex-row flex-wrap place-content-between mt-6 px-6 gap-x-2 gap-y-4">
           <div>
             <h4 className="text-2xl font-bold">Projects</h4>
           </div>
@@ -665,7 +660,17 @@ const Project = () => {
                       </div>
                       )}
                       {activeTab === "Tasks" && (
-                        <div className="text-gray-700">Tasks</div>
+                        <div className="">
+                          <Grid2 container >
+                            <Grid2 size={6} className="">
+                              
+                            </Grid2>
+
+                            <Grid2 size={6}>
+
+                            </Grid2>
+                          </Grid2>
+                        </div>
                       )}
                     </div>
                   </div>

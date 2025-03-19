@@ -300,7 +300,7 @@ export default function Sidebar({ children }) {
           </div>
         </div>
 
-        <div className="h-screen md:h-full w-screen  lg:w-full  ">
+        <div className="py-6 h-full overflow-y-scroll w-screen  lg:w-full  ">
           {children}
         </div>
       </div>
