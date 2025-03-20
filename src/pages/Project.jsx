@@ -172,7 +172,7 @@ const Project = () => {
                 <h5 className=" text-2xl font-bold">Add Project</h5>
                 <form
                   action=""
-                  className="addProject mt-8 flex flex-col gap-y-2"
+                  className=" mt-8 flex flex-col gap-y-2"
                 >
                   <Grid2 container spacing={2} className="w-full">
                     <Grid2 size={{ xs: 12, sm: 6 }} className="inputData">
